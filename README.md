@@ -22,17 +22,26 @@
 
 ## 3.安装运行环境
 (1)双击运行python安装包(建议安装我们给出的版本,其他版本兼容性不保证)
+
 ![step4](img/img4.png)
 
 (2)勾选,然后
+
 ![step5](img/img5.png)
 
 (3)按`win`+`r` 输入`cmd` 回车
+
 ![step6](img/img6.png)
 (4)输入`pip list` 大概会有以下显示(不报错就行)
+
 ![step7](img/img7.png)
+
 (5)输入`pip install uiautomator2 -i  https://pypi.tuna.tsinghua.edu.cn/simple` 等待安装完成
+
 (6)双击运行main.py(如果不适用请看后面这种方法)
+
 (7)或者在main.py的目录下(例,如图) 
+
 ![img.png](img/img8.png)
+
 (8)右键任意区域 选中`在终端中打开`,然后执行`python main.py`
