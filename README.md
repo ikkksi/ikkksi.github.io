@@ -26,6 +26,10 @@
 
 ![step3](img/img3.png)
 
+(3)安装小猿口算
+
+将我们给你的文件夹中的base.apk文件拖入雷电模拟器，然后登录小猿，先手动pk几次
+
 ## 3.安装运行环境
 
 (1)双击运行python安装包(建议安装我们给出的版本,其他版本兼容性不保证)
@@ -53,3 +57,83 @@
 ![img.png](img/img8.png)
 
 (8)右键任意区域 选中`在终端中打开`,然后执行`python main.py`
+
+## 4.
+
+```python
+import uiautomator2 as u2
+import time
+de =u2.connect()
+
+
+
+def sw_dayu():
+    fx=261
+    fy=1133
+    tx=400
+    ty=1281
+    de.swipe(fx,fy,tx,ty,steps=1)
+    fx=tx
+    fy=ty
+    tx=261
+    ty=1420
+    de.swipe(fx,fy,tx,ty,steps=1)
+    time.sleep(0.35)   #这里设置题目与题目之间的间隔 如果出现卡住不动 请稍微调高一点
+
+def sw_xiaoyu():
+    fx = 639
+    fy = 1253
+    tx = 400
+    ty = 1400
+    de.swipe(fx, fy, tx, ty,steps=1)
+    fy = 1500
+    de.swipe(tx, ty, fx,fy ,steps=1)
+    time.sleep(0.35)  #这里设置题目与题目之间的间隔
+
+de(text="小猿口算").click()
+de(index=5,className="android.view.ViewGroup").click()
+de(text="开始PK").wait()
+
+
+
+
+while True:
+    
+    print("开始PK")
+    de(text="开始PK").click()
+    print("已经开始")
+    time.sleep(5)
+    
+    while True:
+        try:
+            e1 = de(className="android.widget.TextView",index=0)
+            e2 = de(className="android.widget.TextView",index=2)
+            if int(e1.get_text())>int(e2.get_text()):
+                sw_dayu()
+            else:
+                sw_xiaoyu()
+            ise = de(text="正在加载").exists()
+            
+            print(ise)
+            if ise:
+                time.sleep(3)
+                
+                
+                de.press("back")
+                de.press("back")
+                time.sleep(5)
+                print("重新开始")
+
+                print("开始PK")
+                
+                de(text="开始PK").wait()
+                
+                de(text="开始PK").click()
+                print("已经开始")
+                time.sleep(5)
+                
+                
+        finally:
+            continue
+    continue
+```
